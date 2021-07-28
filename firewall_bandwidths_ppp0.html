@@ -1,0 +1,101 @@
+<html>
+<head><title>bandwidth</title>
+
+<style type="text/css">
+/* commandline was: /usr/bin/indexmaker router.cfg lnd-router.cfg mrtg.cfg */
+/* sorry, no style, just abusing this to place the commandline and pass validation */
+</style>
+</head>
+<body>
+
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="jquery.sparkline.2.1.2.js"></script>
+
+	<script type="text/javascript">
+
+	// this is enormously hacky, I'm no javascript guru.
+
+	// name of the relative URI where we get the raw data
+	var raw_data_uri = "firewall_bandwidths_ppp0.txt"
+
+	// index of last items in the arrays
+	var inBwValueLastIdx  = 29;
+	var inPktsValueLastIdx  = 29;
+	var outBwValueLastIdx = 29;
+	var outPktsValueLastIdx = 29;
+
+	// initial values, these get replaced soon enough, in megabytes/sec
+        var inBwMax       = 1000;
+        var outBwMax      = 1000;
+        var inPktsMax     = 1000;
+        var outPktsMax    = 1000;
+
+	// initialise arrays with default values
+	var inBwValues    = [0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0];
+	var inPktsValues  = [0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0];
+	var outBwValues   = [0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0];
+	var outPktsValues = [0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0  ,0,0,0,0,0,0,0,0,0,0];
+
+	var refreshPeriod = 2000; // milliseconds!
+	var timerId = setInterval(updateBwChart, refreshPeriod);
+
+	function shiftData()
+	{
+		for (idx = 0; idx < inBwValueLastIdx; ++idx)
+		{
+			inBwValues[idx] = inBwValues[idx + 1];
+		}
+		for (idx = 0; idx < outBwValueLastIdx; ++idx)
+		{
+			outBwValues[idx] = outBwValues[idx + 1];
+		}
+		for (idx = 0; idx < inPktsValueLastIdx; ++idx)
+		{
+			inPktsValues[idx] = inPktsValues[idx + 1];
+		}
+		for (idx = 0; idx < outPktsValueLastIdx; ++idx)
+		{
+			outPktsValues[idx] = outPktsValues[idx + 1];
+		}
+	}
+	function updateBwChart()
+	{
+		$.get(raw_data_uri, function(results)
+		{
+			//alert("got new data update " + results);
+			values = results.split(" "); 
+			shiftData();
+			refreshPeriod = values[0] * 1000;
+			inBwMax = values[1];
+			inBwValues[inBwValueLastIdx] = values[2];
+			outBwMax = values[3];
+			outBwValues[outBwValueLastIdx] = values[4];
+			inPktsMax = values[5];
+			inPktsValues[inPktsValueLastIdx] = values[6];
+			outPktsMax = values[7];
+			outPktsValues[outPktsValueLastIdx] = values[8];
+			$('.inbwsparkline').sparkline(inBwValues,   { type: 'line', height: 40, width: 200, chartRangeMin:0, normalRangeMin: 0, normalRangeMax: inBwMax });
+			$('.outbwsparkline').sparkline(outBwValues, { type: 'line', height: 40, width: 200, chartRangeMin:0, normalRangeMin: 0, normalRangeMax: outBwMax });
+			$('.inpktssparkline').sparkline(inPktsValues,   { type: 'line', height: 40, width: 200, normalRangeMin: 0, normalRangeMax: inPktsMax });
+			$('.outpktssparkline').sparkline(outPktsValues, { type: 'line', height: 40, width: 200, normalRangeMin: 0, normalRangeMax: outPktsMax });
+		});
+	}
+
+	function openSimpleWindow()
+	{
+		window.open("firewall_bandwidths.html","fwbw","menubar=0,resizable=1,width=290,height=210,directories=0,locationbar=0,toolbar=0,status=0");
+	}
+	</script>
+
+
+<p>
+<span class="inbwsparkline">loading</span> in octet rate<br /><br />
+<span class="outbwsparkline">loading</span> out octet rate<br /><br />
+<span class="inpktssparkline">loading</span> in packet rate<br /><br />
+<span class="outpktssparkline">loading</span> out packet rate
+</p>
+
+
+</body>
+</html>
+
