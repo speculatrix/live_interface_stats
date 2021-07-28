@@ -53,7 +53,6 @@ $ sudo vi live_interface_stats.sh
 ```
 
 maybe run the script in a tmux session:
-
 ```
 $ cd /usr/local/sbin/
 $ tmux
@@ -61,8 +60,10 @@ $ tmux
 $ ./live_interface_stats.sh ppp0
 ```
 
-Run the script in a tmux or screen session, check that it's updating the
-DATADIR/DATAFILE file
+check that it's updating the DATADIR/DATAFILE file:
+```
+$ watch cat /var/run/live_interface_stats/old_stats_ppp0.dat
+```
 
 
 # Viewing the graphs
