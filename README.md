@@ -18,6 +18,6 @@ DATADIR/DATAFILE file
 Open the html file in your browser and you should see the following
 animated graph:
 
-![Interface graph](https://raw.githubusercontent.com/speculatrix/live_interface_stats/master/live_interface_stats.png)
+![Interface graph](https://raw.githubusercontent.com/speculatrix/live_interface_stats/main/live_interface_stats.png)
 
 
