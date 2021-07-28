@@ -74,3 +74,7 @@ animated graph:
 ![Interface graph](https://github.com/speculatrix/live_interface_stats/raw/main/live_interface_stats.png)
 
 
+# Acknowledgements
+
+This would not have been possible with this the <a href="https://omnipotent.net/jquery.sparkline/#s-about">jQuery Sparklines</a> project
+
