@@ -23,14 +23,19 @@ web page can access over http/https.
 
 # Deployment
 
+## Web page
 Copy/rename the html file into a place where it can be accessed by a web
-browser, giving it a name to reflect the interface being monitored
+browser, giving it a name to reflect the interface being monitored, and
+change the name of the interface data file to reflect the interface name
+you'll be monitoring.
 
 ```
 $ sudo mkdir /var/www/html/live_interface_stats
 $ sudo cp live_interface_stats.html /var/www/html/live_interface_stats_ppp0.html
 $ sudo vi /var/www/html/live_interface_stats_ppp0.html
 ```
+
+## Background daemon
 
 Copy the script to a suitable place like /usr/local/sbin where it can 
 be run as a daemon.
