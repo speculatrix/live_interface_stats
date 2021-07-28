@@ -77,4 +77,6 @@ animated graph:
 # Acknowledgements
 
 This would not have been possible with this the <a href="https://omnipotent.net/jquery.sparkline/#s-about">jQuery Sparklines</a> project
+from whom this work was adaptored (namely the mouse velocity example).
+
 
