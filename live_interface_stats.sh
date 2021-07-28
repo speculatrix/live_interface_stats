@@ -14,9 +14,9 @@ fi
 
 HOST=127.0.0.1
 
-DATADIR="/var/run/palin_stats_$IFNAME"
-DATAFILE="$DATADIR/old_stats.dat"
-BWFILE="/var/www/public/htdocs/firewall/firewall_bandwidths_$IFNAME.txt"
+DATADIR="/var/run/live_interface_stats"
+DATAFILE="$DATADIR/old_stats_$IFNAME.dat"
+BWFILE="/var/www/public/htdocs/live_interface_stats/live_interface_stats_$IFNAME.txt"
 
 
 # Y axis params for the web page - rate is octets per second
