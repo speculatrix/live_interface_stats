@@ -1,5 +1,24 @@
-# live_interface_stats
+# live interface stats
+
 a web based animated interactive graph showing network traffic
+
+
+# how it works
+
+a simple background process updates a file on a web server which
+contains a set of values; the sparklines javascript magic running
+in a static webpage grabs those values at intervals and makes a
+scrolling graph.
+
+In this demo, the values are network traffic readings of bytes and
+packets, found by using snmp to get the interface metrics on the
+localhost. There's no reason why the background process needs to
+find the stats for the localhost, it could be a router, switch or
+firewall, anything that supports snmp.
+
+If you're more adventurous, you can get the metrics some other way,
+all you need is to be able to write the values to a file which the
+web page can access over http/https.
 
 
 # Deployment
