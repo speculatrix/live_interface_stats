@@ -32,17 +32,20 @@ if [ "$1" == "-d" ] ; then
 	echo "Debug enabled"
 fi
 
-let W=0
-let X=0
-let Y=0
-let Z=0
+
+# nasty globals which are set by get_stats()
+W=0
+X=0
+Y=0
+Z=0
+
 
 
 #########################################
 function get_stats()
 {
 	local IFNUM="$1"
-	read W X Y Z < <( snmpget -v2c -c public -OQ -Ov "$HOST" "IF-MIB::ifInOctets.$IFNUM" "IF-MIB::ifOutOctets.$IFNUM" "IF-MIB::ifInUcastPkts.$IFNUM" "IF-MIB::ifOutUcastPkts.$IFNUM"  | tr "\n" " " )
+	read -r W X Y Z < <( snmpget -v2c -c public -OQ -Ov "$HOST" "IF-MIB::ifInOctets.$IFNUM" "IF-MIB::ifOutOctets.$IFNUM" "IF-MIB::ifInUcastPkts.$IFNUM" "IF-MIB::ifOutUcastPkts.$IFNUM"  | tr "\n" " " )
 }
 
 
@@ -50,7 +53,7 @@ function get_stats()
 # main
 
 # find the interface
-IFNUM=`snmpwalk -v2c -c public localhost .1.3.6.1.2.1.2.2.1.2 | grep "$IFNAME" | sed -re 's/IF-MIB::ifDescr\.([0-9]*) .*$/\1/'`
+IFNUM=$( snmpwalk -v2c -c public localhost .1.3.6.1.2.1.2.2.1.2 | grep "$IFNAME" | sed -re 's/IF-MIB::ifDescr\.([0-9]*) .*$/\1/' )
 if [ "$IFNUM" == "" ] ; then
 	echo "Error, failed to find the interface"
 	exit 1
@@ -67,18 +70,18 @@ echo "$W $X $Y $Z" > $DATAFILE
 sleep $DELAY
 
 # loop poll
-while [ /bin/true ] ; do
+while /bin/true ; do
 
 	if [ -f "$DATAFILE" ] ; then
 		# get previous values
-		read A B C D < $DATAFILE
+		read -r A B C D < $DATAFILE
 
 		get_stats "$IFNUM"
 
 		[ $DEBUG == 1 ] && echo "W X Y Z $W $X $Y $Z" >&2
-		echo "$W $X $Y $Z" > $DATAFILE
+		echo "$W $X $Y $Z" > "$DATAFILE"
 
-		echo $DELAY $MAXINBPS $(( $W - $A )) $MAXOUTBPS $(( $X - $B )) $MAXPPS $(( $Y - $C )) $MAXPPS $(( $Z - $D )) > $BWFILE
+		echo "$DELAY $MAXINBPS $(( W - A )) $MAXOUTBPS $(( X - B )) $MAXPPS $(( Y - C )) $MAXPPS $(( Z - D ))" > "$BWFILE"
 
 		[ $DEBUG == 1 ] && echo "loop" >&2
 	fi
