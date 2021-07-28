@@ -26,13 +26,41 @@ web page can access over http/https.
 Copy/rename the html file into a place where it can be accessed by a web
 browser, giving it a name to reflect the interface being monitored
 
+```
+$ sudo mkdir /var/www/html/live_interface_stats
+$ sudo cp live_interface_stats.html /var/www/html/live_interface_stats_ppp0.html
+$ sudo vi /var/www/html/live_interface_stats_ppp0.html
+```
+
+Copy the script to a suitable place like /usr/local/sbin where it can 
+be run as a daemon.
+
 Modify the script to set the DATADIR to the directory where the web page
 is stored, so that the client running the javascript can retrieve the
 bandwidth file; change the HOST if it's interrogating a different host
 from itself
 
+```
+$ sudo mkdir -p /usr/local/sbin
+$ sudo cp live_interface_stats.sh /usr/local/sbin/
+$ cd /usr/local/sbin/
+$ sudo vi live_interface_stats.sh
+```
+
+maybe run the script in a tmux session:
+
+```
+$ cd /usr/local/sbin/
+$ tmux
+...
+$ ./live_interface_stats.sh ppp0
+```
+
 Run the script in a tmux or screen session, check that it's updating the
 DATADIR/DATAFILE file
+
+
+# Viewing the graphs
 
 Open the html file in your browser and you should see the following
 animated graph:
