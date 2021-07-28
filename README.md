@@ -52,7 +52,7 @@ $ cd /usr/local/sbin/
 $ sudo vi live_interface_stats.sh
 ```
 
-maybe run the script in a tmux session:
+maybe run the script in a tmux session (Screen would also do):
 ```
 $ cd /usr/local/sbin/
 $ tmux
