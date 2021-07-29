@@ -3,6 +3,14 @@
 a web based animated interactive graph showing network traffic
 
 
+# licence
+
+my code is released under the GPLv3
+
+the jquery sparklines code was released under the 
+<a href="https://opensource.org/licenses/BSD-3-Clause">New BSD licence</a>
+
+
 # how it works
 
 a simple background process updates a file on a web server which
