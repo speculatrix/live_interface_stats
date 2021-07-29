@@ -24,13 +24,14 @@ web page can access over http/https.
 # Deployment
 
 ## Web page
-Copy/rename the html file into a place where it can be accessed by a web
+Copy/rename the jquery files, and the html file into a place where it can be accessed by a web
 browser, giving it a name to reflect the interface being monitored, and
 change the name of the interface data file to reflect the interface name
 you'll be monitoring.
 
 ```
 $ sudo mkdir /var/www/html/live_interface_stats
+$ sudo cp -p jq*js /var/www/html/live_interface_stats_ppp0.html
 $ sudo cp live_interface_stats.html /var/www/html/live_interface_stats_ppp0.html
 $ sudo vi /var/www/html/live_interface_stats_ppp0.html
 ```
