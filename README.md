@@ -7,8 +7,10 @@ a web based animated interactive graph showing network traffic
 
 my code is released under the GPLv3
 
-the jquery sparklines code was released under the 
+the jquery sparklines project released their code under the 
 <a href="https://opensource.org/licenses/BSD-3-Clause">New BSD licence</a>
+and was copied and adapted to make this work.
+
 
 # screenshot of graph
 
