@@ -41,10 +41,10 @@ server available.
 
 ## client side
 
-The "sparklines" javascript was adapted to grab values from the
-web site, and makes a scrolling graph.
+The "sparklines" javascript was adapted to grab values from a
+web site, and make scrolling graphs.
 
-In this demo, the values are network traffic readings of bytes and
+In this values are network traffic readings of bytes and
 packets, found by using snmp to get the interface metrics on the
 localhost. There's no reason why the background process needs to
 find the stats for the localhost, it could be a router, switch or
@@ -58,15 +58,18 @@ web server can server over http/https.
 # Deployment
 
 ## Web page
-Copy/rename the jquery files, and the html file into a place where it can be accessed by a web
+
+Grab jquery.js from https://github.com/jquery/jquery/blob/main/src/jquery.js
+
+Copy jquery.js and the html file into a place where it can be accessed by a web
 browser, giving it a name to reflect the interface being monitored, and
 change the name of the interface data file to reflect the interface name
 you'll be monitoring.
 
 ```
-$ sudo mkdir /var/www/html/live_interface_stats
-$ sudo cp -p jq*js /var/www/html/live_interface_stats_ppp0.html
-$ sudo cp live_interface_stats.html /var/www/html/live_interface_stats_ppp0.html
+$ sudo mkdir -p /var/www/html/live_interface_stats
+$ sudo cp -p jq*js /var/www/html/live_interface_stats/
+$ sudo cp live_interface_stats.html /var/www/html/live_interface_stats/live_interface_stats_ppp0.html
 $ sudo vi /var/www/html/live_interface_stats_ppp0.html
 ```
 
