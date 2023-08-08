@@ -34,10 +34,11 @@ which provides the measurements to be graphed.
 
 A simple background process updates a file on a web server which
 contains a set of values. This means that you can have many people
-viewing the graphs, and they are only fetching a file which imposes
-only a small extra load on the server, and since they are not running
-a cgi-bin program there's no security risk other than having a web
-server available.
+viewing the graphs without overloading the server, because they 
+are only fetching a file which imposes minimal load.
+
+Since they are not running a cgi-bin program there's no security 
+risk other than having a web server available.
 
 ## client side
 
