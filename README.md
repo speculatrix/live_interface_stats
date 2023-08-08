@@ -61,16 +61,21 @@ web server can server over http/https.
 
 Grab jquery.js from https://github.com/jquery/jquery/blob/main/src/jquery.js
 
+Grab jquery.sparkline.js from https://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js
+
 Copy jquery.js and the html file into a place where it can be accessed by a web
 browser, giving it a name to reflect the interface being monitored, and
 change the name of the interface data file to reflect the interface name
 you'll be monitoring.
 
+These commands slightly tweaked should do what you need:
 ```
 $ sudo mkdir -p /var/www/html/live_interface_stats
-$ sudo cp -p jq*js /var/www/html/live_interface_stats/
 $ sudo cp live_interface_stats.html /var/www/html/live_interface_stats/live_interface_stats_ppp0.html
-$ sudo vi /var/www/html/live_interface_stats_ppp0.html
+$ cd /var/www/html/live_interface_stats
+$ sudo wget https://github.com/jquery/jquery/blob/main/src/jquery.js
+$ sudo wget https://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js
+$ sudo vi live_interface_stats_ppp0.html
 ```
 
 ## Background daemon
