@@ -114,6 +114,6 @@ $ watch cat /var/run/live_interface_stats/old_stats_ppp0.dat
 # Acknowledgements
 
 This would not have been possible with this the <a href="https://omnipotent.net/jquery.sparkline/#s-about">jQuery Sparklines</a> project
-from whom this work was adaptored (namely the mouse velocity example).
+from whom this work was adapted (namely the mouse velocity example).
 
 
