@@ -24,12 +24,6 @@ server, so you can see where there's high load.
 
 # how it works
 
-## client side
-The end user opens an HTML page which loads some javascript, and 
-that generates the animated graph, all the heavy lifting is done
-on the client side. The javascript polls a file on the web server
-which provides the measurements to be graphed.
-
 ## server side
 
 A simple background process updates a file on a web server which
@@ -42,11 +36,18 @@ risk other than having a web server available.
 
 ## client side
 
-The "sparklines" javascript was adapted to grab values from a
-web site, and make scrolling graphs.
+### web browser
+The end user opens an HTML page which loads some javascript, and 
+that generates the animated graph, all the heavy lifting is done
+on the client side. The javascript polls a file on the web server
+which provides the measurements to be graphed.
 
-In this values are network traffic readings of bytes and
-packets, found by using snmp to get the interface metrics on the
+### dependencies
+The "sparklines" javascript was used to show values from a web page
+grabbed web site, to make scrolling graphs.
+
+These values are network traffic readings of bytes and packets, 
+found by using snmp to get the interface metrics on the
 localhost. There's no reason why the background process needs to
 find the stats for the localhost, it could be a router, switch or
 firewall, anything that supports snmp.
