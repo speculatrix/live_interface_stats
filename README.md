@@ -34,6 +34,17 @@ are only fetching a file which imposes minimal load.
 Since they are not running a cgi-bin program there's no security 
 risk other than having a web server available.
 
+For this project, these values are network traffic readings of bytes
+and packets, found by using snmp to get the interface metrics on the
+localhost. There's no reason why the background process needs to
+find the stats for the localhost, it could be a router, switch or
+firewall, anything that supports snmp.
+
+If you're more adventurous, you can get the metrics some other way,
+all you need is to be able to write the values to a file which the
+web server can server over http/https.
+
+
 ## client side
 
 ### web browser
@@ -43,18 +54,7 @@ on the client side. The javascript polls a file on the web server
 which provides the measurements to be graphed.
 
 ### dependencies
-The "sparklines" javascript was used to show values from a web page
-grabbed web site, to make scrolling graphs.
-
-These values are network traffic readings of bytes and packets, 
-found by using snmp to get the interface metrics on the
-localhost. There's no reason why the background process needs to
-find the stats for the localhost, it could be a router, switch or
-firewall, anything that supports snmp.
-
-If you're more adventurous, you can get the metrics some other way,
-all you need is to be able to write the values to a file which the
-web server can server over http/https.
+The "sparklines" javascript was used make the side-scrolling graphs.
 
 
 # Deployment
